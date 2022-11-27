@@ -1,6 +1,11 @@
 import got from "got";
 import { compareTwoStrings } from "string-similarity";
-import { EpisodeResource, ManualImportResource, SeriesResource } from "./types";
+import {
+  CommandResponse,
+  EpisodeResource,
+  ManualImportResource,
+  SeriesResource,
+} from "./types";
 
 const minSimilarityScore = 0.8;
 
@@ -75,12 +80,15 @@ const importFiles = filesToImport.map((file) => {
 });
 
 // 6. import files
-await api.post("command", {
-  json: {
-    name: "ManualImport",
-    importMode: "copy",
-    files: importFiles,
-  },
-});
+const commandResponse = await api
+  .post("command", {
+    json: {
+      name: "ManualImport",
+      importMode: "copy",
+      files: importFiles,
+    },
+  })
+  .json<CommandResponse>();
 
-console.info("Successfully queued the import of the files");
+const filesImporting = commandResponse.body.files.length;
+console.info(`Successfully queued the import of ${filesImporting} files`);

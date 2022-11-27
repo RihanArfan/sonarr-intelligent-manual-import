@@ -10,15 +10,15 @@ export interface ManualImportResource {
   episodes?: any;
   episodeFileId?: number;
   releaseGroup?: string;
-  quality: any;
-  languages: any;
+  quality: Quality;
+  language: Language;
   qualityWeight: any;
   downloadId?: string;
   nullable: true;
   rejections: any;
 }
 
-export type EpisodeResource = {
+export interface EpisodeResource {
   id: number;
   seriesId: number;
   tvdbId: number;
@@ -32,9 +32,36 @@ export type EpisodeResource = {
   hasFile: boolean;
   monitored: boolean;
   unverifiedSceneNumbering: boolean;
-};
+}
 
 export interface SeriesResource {
   id: number;
   title: string;
+}
+
+export interface CommandResponse {
+  name: string;
+  commandName: string;
+  body: {
+    files: ManualImportResource[];
+  };
+}
+
+export interface Quality {
+  quality: {
+    id: number;
+    name: string;
+    source: string;
+    resolution: number;
+  };
+  revision: {
+    version: number;
+    real: number;
+    isRepack: boolean;
+  };
+}
+
+export interface Language {
+  id: number;
+  name: string;
 }
