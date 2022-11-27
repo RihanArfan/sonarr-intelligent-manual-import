@@ -68,6 +68,8 @@ const importFiles = filesToImport.map((file) => {
     seriesId,
     episodeIds: [episode.id],
     releaseGroup: process.env.RELEASE_GROUP,
+    quality: file.quality,
+    language: file.language,
   };
 });
 
