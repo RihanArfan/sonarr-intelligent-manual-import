@@ -13,6 +13,7 @@ const api = got.extend({
   prefixUrl: `${process.env.ENDPOINT}/api/v3`,
   headers: {
     "x-api-key": process.env.API_KEY,
+    "user-agent": "Sonarr Intelligent Manual Importer",
   },
 });
 
