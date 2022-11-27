@@ -10,13 +10,13 @@ If you want to use the tool, you WILL have to change the episode name matching r
 # Build
 git clone https://github.com/RihanArfan/sonarr-intelligent-manual-import.git
 cd sonarr-intelligent-manual-import/
-docker build . --tag=sonarr-manual-import
+sudo docker build . --tag=sonarr-manual-import
 
 # Configure
 cp .env.example .env
 
 # Run
-docker run --env-file .env --rm sonarr-manual-import
+sudo docker run --env-file .env --network="host" --rm sonarr-manual-import
 ```
 
 ## Technologies
