@@ -53,7 +53,8 @@ const filesToImport = folderEntries.filter((file) => {
   // match only the episode name
   // file.name looks like "Looney Tunes Platinum Collection (1930) - V03E04 - Little Red Riding Rabbit (1080p BluRay x265).mkv" and we only want "Little Red Riding Rabbit"
   // IMPORTANT: This will only work if the naming format matches exactly! Change this to match your naming format. I was too lazy to make a generic naming handler.
-  const fileName = file.name.match(/- V\d+E\d+ - (.*) \(/)![1];
+  const fileName = file.name.match(/- V\d+E\d+ - (.*) \(/)?.[1];
+  if (!fileName) return false;
 
   return similarEpisodeName(fileName);
 });
